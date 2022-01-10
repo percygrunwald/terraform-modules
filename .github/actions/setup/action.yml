@@ -1,0 +1,7 @@
+name: Checkout and setup
+description: Check out the repo and perform setup steps
+runs:
+  using: composite
+  steps:
+      - id: asdf-install
+        uses: asdf-vm/actions/install@v1
