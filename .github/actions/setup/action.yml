@@ -3,5 +3,21 @@ description: Check out the repo and perform setup steps
 runs:
   using: composite
   steps:
+      - id: cache-asdf
+        uses: actions/cache@v2
+        with:
+          path: ~/.asdf
+          key: ${{ runner.os }}-${{ runner.arch }}
+      - id: set-path
+        shell: bash
+        run: |
+          echo "$HOME/.asdf/bin" >> $GITHUB_PATH
+          echo "$HOME/.asdf/shims" >> $GITHUB_PATH
+        if: steps.cache-asdf.outputs.cache-hit == 'true'
+      - id: check-path
+        shell: bash
+        run: |
+          echo $PATH
+          echo $GITHUB_PATH
       - id: asdf-install
         uses: asdf-vm/actions/install@v1
