@@ -7,7 +7,7 @@ runs:
         uses: actions/cache@v2
         with:
           path: ~/.asdf
-          key: ${{ runner.os }}-${{ runner.arch }}
+          key: ${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.github/cache_version') }}
       - id: set-path
         shell: bash
         run: |
@@ -21,3 +21,8 @@ runs:
           echo $GITHUB_PATH
       - id: asdf-install
         uses: asdf-vm/actions/install@v1
+      - id: install-tflint
+        uses: terraform-linters/setup-tflint@v1
+      - id: install-deps
+        shell: bash
+        run: ./script/install_deps.sh

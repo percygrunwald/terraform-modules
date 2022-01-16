@@ -1,0 +1,12 @@
+---
+skip-check:
+  # Ensure no security groups allow ingress from 0.0.0.0:0 to port 22
+  # https://docs.bridgecrew.io/docs/networking_1-port-security
+  # At the moment we will allow this rule for convenience.
+  - CKV_AWS_24
+  # Ensure that EC2 is EBS optimized
+  # https://docs.bridgecrew.io/docs/ensure-that-ec2-is-ebs-optimized
+  # Does not seem required, the number of instance types that support EBS
+  # optimization that don't have it enabled by default is short and seems to
+  # mostly be older generations.
+  - CKV_AWS_135

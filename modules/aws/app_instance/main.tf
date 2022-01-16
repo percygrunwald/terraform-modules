@@ -48,22 +48,25 @@ data "template_cloudinit_config" "config" {
 }
 
 resource "aws_instance" "this" {
-  for_each               = var.instances
-  ami                    = (var.ami_custom_image_id != "" ? var.ami_custom_image_id : data.aws_ami.ubuntu.id)
-  instance_type          = each.value
-  vpc_security_group_ids = concat([aws_security_group.this.id], var.extra_security_group_ids)
-  key_name               = var.keypair_name
-  iam_instance_profile   = aws_iam_instance_profile.this.name
-  user_data_base64       = data.template_cloudinit_config.config.rendered
-
-  # Terraform will try to recreate the instance on subsequent `apply`s if this
-  # is not explicitly set to `true` (because we associate an EIP).
-  associate_public_ip_address = true
+  for_each                    = var.instances
+  ami                         = (var.ami_custom_image_id != "" ? var.ami_custom_image_id : data.aws_ami.ubuntu.id)
+  instance_type               = each.value
+  vpc_security_group_ids      = concat([aws_security_group.this.id], var.extra_security_group_ids)
+  key_name                    = var.keypair_name
+  iam_instance_profile        = aws_iam_instance_profile.this.name
+  user_data_base64            = data.template_cloudinit_config.config.rendered
+  monitoring                  = true
+  associate_public_ip_address = false
 
   # `element` "wraps around" if the index of the current hostname is greater
   # than maximum index of the subnet IDs. This will distribute the instances
   # evenly over the list of subnets provided.
   subnet_id = element(var.subnet_ids, index(keys(var.instances), each.key))
+
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
 
   root_block_device {
     volume_type           = "gp2"
@@ -99,6 +102,7 @@ resource "aws_eip" "this" {
 
 resource "aws_security_group" "this" {
   name_prefix = "${local.name}-app_instance"
+  description = "Main security group for the app instance"
   vpc_id      = var.vpc_id
 
   lifecycle {
@@ -115,6 +119,7 @@ resource "aws_security_group" "this" {
 resource "aws_security_group_rule" "allow_ssh_inbound" {
   type              = "ingress"
   security_group_id = aws_security_group.this.id
+  description       = "Allow inbound SSH"
 
   from_port   = local.ssh_port
   to_port     = local.ssh_port
@@ -125,6 +130,7 @@ resource "aws_security_group_rule" "allow_ssh_inbound" {
 resource "aws_security_group_rule" "allow_all_outbound" {
   type              = "egress"
   security_group_id = aws_security_group.this.id
+  description       = "Allow all outbound connections"
 
   from_port   = local.any_port
   to_port     = local.any_port

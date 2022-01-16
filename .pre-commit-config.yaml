@@ -8,12 +8,20 @@ repos:
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-added-large-files
+      - id: check-symlinks
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.62.3
     hooks:
+      - id: checkov
       - id: terraform_fmt
-  - repo: https://github.com/dnephin/pre-commit-golang
-    rev: v0.4.0
+      - id: terraform_tflint
+      - id: terraform_validate
+        args:
+          - --args=-json
+          - --args=-no-color
+  - repo: https://github.com/tekwizely/pre-commit-golang
+    rev: v1.0.0-beta.5
     hooks:
       - id: go-fmt
       - id: go-lint
+      - id: go-vet-mod

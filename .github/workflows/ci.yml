@@ -1,18 +1,16 @@
 on: [push, pull_request]
 jobs:
-  format:
+  pre-commit-all:
     runs-on: ubuntu-latest
     steps:
       - id: checkout
         uses: actions/checkout@v2
       - id: setup
         uses: ./.github/actions/setup
-      - id: gofmt
-        run: gofmt -s -l $(find . -name '*.go' -type f -print)
-      - id: terraform-fmt
-        run: terraform fmt -recursive -diff
+      - id: pre-commit-all
+        run: pre-commit run --all-files
   test:
-    needs: [format]
+    needs: [pre-commit-all]
     runs-on: ubuntu-latest
     steps:
       - id: checkout

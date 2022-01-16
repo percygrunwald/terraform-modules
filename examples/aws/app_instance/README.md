@@ -24,3 +24,7 @@ When running `apply`, simply pass the `aws_region` variable:
 ```
 terraform apply -var "aws_region=us-west-2"
 ```
+
+<!-- BEGIN_TF_DOCS -->
+{{ .Content }}
+<!-- END_TF_DOCS -->

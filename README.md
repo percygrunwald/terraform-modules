@@ -3,26 +3,13 @@ Terraform modules repo in the style of "Terraform: Up &amp; Running"
 
 ## Development setup
 
-These instructions assume that you are using [asdf version manager](http://asdf-vm.com/), which I highly recommend. If not, you will need the languages listed in `.tool-versions` installed.
+The setup scripts are designed for [asdf version manager](http://asdf-vm.com/). If you aren't using `asdf`, you can still use the setup script, but all tools in `.tool-versions` must be installed before running the script.
+
+The setup script ensures all tools, global packages and hooks are installed and is idempotent.
 
 ```
-# Install asdf plugins and ensure correct versions of all languages are installed
-asdf plugin add golang
-asdf plugin add terraform
-asdf plugin add python
-asdf install
-
-# Install golint
-go get -u golang.org/x/lint/golint
-asdf reshim golang
-
-# Install tflint
-curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-asdf reshim python
-
-# Install pre-commit and its hooks into git
-pip install pre-commit
-pre-commit install
+# Set up dev environment
+script/setup_development.sh
 ```
 
 ## Running the examples and tests
@@ -63,4 +50,16 @@ Run an individual test:
 
 ```
 go test ./test/examples_aws_ha_web_app_test.go -v -timeout 60m
+```
+
+## Testing the CI pipeline locally
+
+You can test the CI pipeline (Github Actions) locally using [`act`](https://github.com/nektos/act). Requires docker.
+
+```
+# Install act with go (see docs for other installation options)
+go install github.com/nektos/act@latest
+
+# Run the CI pipeline locally
+act
 ```
