@@ -1,4 +1,7 @@
 # terraform_modules
+
+![ci](https://github.com/percygrunwald/terraform_modules/actions/workflows/ci.yml/badge.svg)
+
 Terraform modules repo in the style of [*Terraform: Up &amp; Running*](https://learning.oreilly.com/library/view/terraform-up/9781492046899/). Modules from this repo can be referenced by an "infrastructure" repo that deploys live infrastructure, usually with [`terragrunt`](https://terragrunt.gruntwork.io/):
 
 ```

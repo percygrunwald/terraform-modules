@@ -7,7 +7,7 @@ runs:
         uses: actions/cache@v2
         with:
           path: ~/.asdf
-          key: ${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.github/cache_version') }}
+          key: ${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('**/.tool-versions') }}
       - id: set-path
         shell: bash
         run: |
