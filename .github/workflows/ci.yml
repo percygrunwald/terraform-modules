@@ -17,6 +17,8 @@ jobs:
         uses: actions/checkout@v2
       - id: setup
         uses: ./.github/actions/setup
-      # enable when secrets are set up
-      # - name: go_test
-      #   run: go test ./test/ -v -timeout 30m
+      - name: go_test
+        run: go test ./test/ -v -timeout 30m
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
