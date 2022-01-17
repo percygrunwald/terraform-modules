@@ -8,17 +8,21 @@ runs:
         with:
           path: ~/.asdf
           key: ${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('**/.tool-versions') }}
+        if: github.actor != 'nektos/act'
+      - id: asdf-dir-exists
+        shell: bash
+        run: |
+          if [ -d "$HOME/.asdf/bin" ]; then
+            echo "::set-output name=asdf-dir-exists::true"
+          else
+            echo "::set-output name=asdf-dir-exists::false"
+          fi
       - id: set-path
         shell: bash
         run: |
           echo "$HOME/.asdf/bin" >> $GITHUB_PATH
           echo "$HOME/.asdf/shims" >> $GITHUB_PATH
-        if: steps.cache-asdf.outputs.cache-hit == 'true'
-      - id: check-path
-        shell: bash
-        run: |
-          echo $PATH
-          echo $GITHUB_PATH
+        if: steps.asdf-dir-exists.outputs.asdf-dir-exists == 'true'
       - id: asdf-install
         uses: asdf-vm/actions/install@v1
       - id: install-tflint

@@ -5,6 +5,9 @@ jobs:
     steps:
       - id: checkout
         uses: actions/checkout@v2
+        with:
+          # Get 2 previous commits in case we want to check for changed files
+          fetch-depth: 2
       - id: setup
         uses: ./.github/actions/setup
       - id: pre-commit-all
@@ -15,10 +18,22 @@ jobs:
     steps:
       - id: checkout
         uses: actions/checkout@v2
+        with:
+          # Get 2 previous commits in case we want to check for changed files
+          fetch-depth: 2
+      - id: terraform-files-changed
+        uses: tj-actions/changed-files@v13.1
+        with:
+          files: |
+            examples/**/*.tf
+            modules/**/*.tf
+            modules/**/*.tpl
+            test/*.go
       - id: setup
         uses: ./.github/actions/setup
       - name: go_test
         run: go test ./test/ -v -timeout 30m
+        if: steps.terraform-files-changed.outputs.any_changed == 'true'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
