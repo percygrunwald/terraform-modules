@@ -1,4 +1,4 @@
-# terraform_modules
+# terraform-modules
 
 ![ci](https://github.com/percygrunwald/terraform_modules/actions/workflows/ci.yml/badge.svg)
 
