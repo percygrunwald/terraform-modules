@@ -69,7 +69,7 @@ You can test the CI pipeline ([Github Actions](https://docs.github.com/en/action
 
 The `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `GITHUB_TOKEN` secrets must be passed or set in the current env. If any of these are not set, `act` will prompt you to enter them. `GITHUB_TOKEN` is required for some actions and can be a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with empty permissions.
 
-`--reuse` reuses the containers for each workflow job, keeping all installed tools/dependencies. This is recommended for frequent runs since `act` cannot make use of actions caching, which means all tools/dependencies must be downloaded each time. If you ever want to start again from scratch (empty container), just run without `--reuse`.
+`--reuse` reuses the containers for each workflow job, keeping all installed tools/dependencies. This is recommended for frequent runs since `act` [cannot make use of actions caching](https://github.com/nektos/act/issues/285#issuecomment-987550101), which means all tools/dependencies must be downloaded each time. If you ever want to start again from scratch (empty container), just run without `--reuse`.
 
 ```
 # Install act with go (see docs for other installation options)
@@ -81,7 +81,3 @@ export AWS_SECRET_ACCESS_KEY=...
 export GITHUB_TOKEN=...
 act -s AWS_ACCESS_KEY_ID -s AWS_SECRET_ACCESS_KEY -s GITHUB_TOKEN --reuse
 ```
-
-### Clearing the cache
-
-Github Actions is configured to cache certain directories and tools. If you want to clear the cache, simply increment the value in `.github/cache_version`.

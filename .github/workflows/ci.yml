@@ -36,6 +36,7 @@ jobs:
             test/*.go
       - id: setup
         uses: ./.github/actions/setup
+        if: steps.terraform-files-changed.outputs.any_changed == 'true'
       - name: go_test
         run: go test ./test/ -v -timeout 30m
         if: steps.terraform-files-changed.outputs.any_changed == 'true'
