@@ -10,6 +10,11 @@ jobs:
           fetch-depth: 2
       - id: setup
         uses: ./.github/actions/setup
+      - id: cache-pre-commit
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pre-commit
+          key: ${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.pre-commit-config.yaml') }}
       - id: pre-commit-all
         run: pre-commit run --all-files
   test:
