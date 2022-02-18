@@ -1,6 +1,6 @@
-# aws/app_instance multi instance example
+# aws/vpc example
 
-Launches multiple instances using the `aws/app_instance` module.
+Launches multiple instances using the `aws/vpc` module.
 
 ## Quick start
 
