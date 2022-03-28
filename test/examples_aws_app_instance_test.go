@@ -25,8 +25,7 @@ func TestExamplesAWSAppInstance(t *testing.T) {
 		TerraformDir: "../examples/aws/app_instance",
 
 		Vars: map[string]interface{}{
-			"aws_region": "sa-east-1",
-			"instances":  instances,
+			"instances": instances,
 		},
 	}
 

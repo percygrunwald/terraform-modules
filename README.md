@@ -29,22 +29,29 @@ In the spirit of [*Terraform: Up &amp; Running*](https://learning.oreilly.com/li
 - A runnable example at `examples/PROVIDER/MODULE`
 - A test at `test/examples_PROVIDER_MODULE_test.go`
 
-### Setup
-
-The only thing required to run the examples and tests are the necessary environment variables to auth with the providers.
-
-```
-# Load AWS creds from ~/.aws/credentials
-export AWS_PROFILE=percy_test-github_actions
-```
-
 ### Run the examples
 
-Change directory to a module example and follow the instructions in the `README.md`:
+```
+# Change to the example directory
+cd examples/aws/app_instance
+
+# Load AWS creds from ~/.aws/credentials
+export AWS_PROFILE=percy_test-github_actions
+
+# Initialize terraform
+terraform init
+
+# Launch infrastructure
+terraform apply
+
+# Destroy infrastructure
+terraform destroy
+```
+
+Modifying the example vars:
 
 ```
-cd examples/aws/app_instance/single_instance
-cat README.md
+terraform apply -var "aws_region=us-west-2"
 ```
 
 ### Run the tests
@@ -58,7 +65,7 @@ go test ./test/ -v -timeout 60m
 Run an individual test:
 
 ```
-go test ./test/examples_aws_app_instance_test.go -v -timeout 60m
+go test ./test/ -v -timeout 60m -run TestExamplesAWSAppInstance
 ```
 
 ## Continuous Integration (CI)
@@ -75,9 +82,11 @@ The `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `GITHUB_TOKEN` secrets must
 # Install act with go (see docs for other installation options)
 go install github.com/nektos/act@latest
 
-# Run the CI pipeline locally
+# Export required env vars
 export AWS_ACCESS_KEY_ID=...github_actions user for test account...
 export AWS_SECRET_ACCESS_KEY=...github_actions user for test account...
 export GITHUB_TOKEN=...nektos/act personal access token...
+
+# Run the CI pipeline locally
 act -s AWS_ACCESS_KEY_ID -s AWS_SECRET_ACCESS_KEY -s GITHUB_TOKEN --reuse
 ```

@@ -20,8 +20,6 @@ func TestExamplesAWSVPC(t *testing.T) {
 		TerraformDir: "../examples/aws/vpc",
 
 		Vars: map[string]interface{}{
-			"aws_region":           "sa-east-1",
-			"env":                  "test",
 			"team_name_underscore": fmt.Sprintf("percygrunwald_%s", random.UniqueId()),
 		},
 	}
@@ -42,7 +40,7 @@ func TestExamplesAWSVPC(t *testing.T) {
 
 	outputPublicSubnetIDsList := terraform.OutputList(t, opts, "public_subnet_ids")
 	outputPublicSubnetIDsCount := len(outputPublicSubnetIDsList)
-	expectedPublicSubnetIDsCount := 2
+	expectedPublicSubnetIDsCount := 3
 
 	assert.Equal(t, expectedPublicSubnetIDsCount, outputPublicSubnetIDsCount)
 }

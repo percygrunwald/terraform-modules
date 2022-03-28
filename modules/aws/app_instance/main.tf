@@ -1,11 +1,9 @@
 terraform {
-  required_version = ">= 1.1.3, < 1.1.4"
-
   backend "s3" {}
 }
 
 locals {
-  ubuntu_version = "bionic-18.04"
+  ubuntu_version = "focal-20.04"
   name           = "${var.team_name_underscore}-${var.service_name_underscore}-${var.env}"
 
   ssh_port     = 22

@@ -13,17 +13,17 @@ variable "custom_tags" {
 }
 
 variable "env" {
-  description = "The service env (e.g. 'dev')"
+  description = "The service env"
   type        = string
   default     = "test"
 }
 
 variable "instances" {
-  description = "The hostnames and type of the instances to create (e.g. 'usw101' => 't3.micro')"
+  description = "The hostnames and type of the instances to create"
   type        = map(string)
   default = {
     example201 = "t3.micro",
-    example202 = "m5.large"
+    example202 = "t3.micro"
   }
 }
 
@@ -34,7 +34,7 @@ variable "service_name_underscore" {
 }
 
 variable "team_name_underscore" {
-  description = "The name of the team, delimited with underscores (e.g. 'sre_observability')"
+  description = "The name of the team, delimited with underscores"
   type        = string
-  default     = "sre_observability"
+  default     = "percygrunwald"
 }

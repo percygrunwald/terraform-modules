@@ -1,6 +1,4 @@
 terraform {
-  required_version = ">= 1.1.3, < 1.1.4"
-
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -20,9 +18,15 @@ module "vpc" {
 
   availability_zones = var.availability_zones
   cidr               = var.cidr
-  public_subnets     = var.public_subnets
-  private_subnets    = var.private_subnets
-  database_subnets   = var.database_subnets
+
+  public_subnets              = var.public_subnets
+  public_subnet_ipv6_prefixes = var.public_subnet_ipv6_prefixes
+
+  private_subnets              = var.private_subnets
+  private_subnet_ipv6_prefixes = var.private_subnet_ipv6_prefixes
+
+  database_subnets              = var.database_subnets
+  database_subnet_ipv6_prefixes = var.database_subnet_ipv6_prefixes
 
   custom_tags          = var.custom_tags
   env                  = var.env
