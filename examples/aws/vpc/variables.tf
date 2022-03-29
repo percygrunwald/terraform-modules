@@ -13,7 +13,7 @@ variable "aws_region" {
 variable "cidr" {
   description = "The CIDR of the VPC"
   type        = string
-  default     = "10.11.0.0/16"
+  default     = "10.40.0.0/16"
 }
 
 variable "custom_tags" {
@@ -27,13 +27,13 @@ variable "custom_tags" {
 variable "database_subnets" {
   description = "List of CIDRs for the private database subnets of the VPC"
   type        = list(string)
-  default     = ["10.11.21.0/24", "10.11.22.0/24", "10.11.23.0/24"]
+  default     = ["10.40.30.0/24", "10.40.31.0/24", "10.40.32.0/24"]
 }
 
 variable "database_subnet_ipv6_prefixes" {
   description = "List of prefixes (0-256) for the database subnets of the VPC"
   type        = list(string)
-  default     = ["21", "22", "23"]
+  default     = ["30", "31", "32"]
 }
 
 variable "env" {
@@ -45,25 +45,25 @@ variable "env" {
 variable "private_subnets" {
   description = "List of CIDRs for the private subnets of the VPC"
   type        = list(string)
-  default     = ["10.11.11.0/24", "10.11.12.0/24", "10.11.13.0/24"]
+  default     = ["10.40.20.0/24", "10.40.21.0/24", "10.40.22.0/24"]
 }
 
 variable "private_subnet_ipv6_prefixes" {
   description = "List of prefixes (0-256) for the private subnets of the VPC"
   type        = list(string)
-  default     = ["11", "12", "13"]
+  default     = ["20", "21", "22"]
 }
 
 variable "public_subnets" {
   description = "List of CIDRs for the public subnets of the VPC"
   type        = list(string)
-  default     = ["10.11.1.0/24", "10.11.2.0/24", "10.11.3.0/24"]
+  default     = ["10.40.10.0/24", "10.40.11.0/24", "10.40.12.0/24"]
 }
 
 variable "public_subnet_ipv6_prefixes" {
   description = "List of prefixes (0-256) for the public subnets of the VPC"
   type        = list(string)
-  default     = ["1", "2", "3"]
+  default     = ["10", "11", "12"]
 }
 
 variable "team_name_underscore" {

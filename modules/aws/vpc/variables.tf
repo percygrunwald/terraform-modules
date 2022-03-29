@@ -16,12 +16,12 @@ variable "cidr" {
 }
 
 variable "database_subnets" {
-  description = "List of CIDRs for the private database subnets of the VPC (e.g. ['10.0.21.0/24', '10.0.22.0/24', '10.0.23.0/24'])"
+  description = "List of CIDRs for the private database subnets of the VPC (e.g. ['10.0.30.0/24', '10.0.31.0/24', '10.0.32.0/24'])"
   type        = list(string)
 }
 
 variable "database_subnet_ipv6_prefixes" {
-  description = "List of prefixes (0-256) for the database subnets of the VPC (e.g. ['21', '22', '23'])"
+  description = "List of prefixes (0-256) for the database subnets of the VPC (e.g. ['30', '31', '32'])"
   type        = list(string)
 }
 
@@ -31,22 +31,22 @@ variable "env" {
 }
 
 variable "private_subnets" {
-  description = "List of CIDRs for the private subnets of the VPC (e.g. ['10.0.11.0/24', '10.0.12.0/24', '10.0.13.0/24'])"
+  description = "List of CIDRs for the private subnets of the VPC (e.g. ['10.0.20.0/24', '10.0.21.0/24', '10.0.22.0/24'])"
   type        = list(string)
 }
 
 variable "private_subnet_ipv6_prefixes" {
-  description = "List of prefixes (0-256) for the private subnets of the VPC (e.g. ['11', '12', '13'])"
+  description = "List of prefixes (0-256) for the private subnets of the VPC (e.g. ['20', '21', '22'])"
   type        = list(string)
 }
 
 variable "public_subnets" {
-  description = "List of CIDRs for the public subnets of the VPC (e.g. ['10.0.1.0/24', '10.0.2.0/24', '10.0.3.0/24'])"
+  description = "List of CIDRs for the public subnets of the VPC (e.g. ['10.0.10.0/24', '10.0.11.0/24', '10.0.12.0/24'])"
   type        = list(string)
 }
 
 variable "public_subnet_ipv6_prefixes" {
-  description = "List of prefixes (0-256) for the public subnets of the VPC (e.g. ['1', '2', '3'])"
+  description = "List of prefixes (0-256) for the public subnets of the VPC (e.g. ['10', '11', '12'])"
   type        = list(string)
 }
 
