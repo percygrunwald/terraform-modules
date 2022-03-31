@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 NVME_VG_NAME="nvme-stripe"
 NVME_LV_NAME="striped_lv_nvme"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Install all global dependecies required for development, testing and
 # pre-commit hooks. This script is idempotent.

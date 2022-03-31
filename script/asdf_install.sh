@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Run `asdf install` after ensuring that all the required plugins from
 # `.tool-versions` are installed. This script is idempotent.
