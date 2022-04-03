@@ -15,6 +15,11 @@ variable "instances" {
   type        = map(string)
 }
 
+variable "org_name_underscore" {
+  description = "The name of the org, delimited with underscores (e.g. 'org_name')"
+  type        = string
+}
+
 variable "subnet_ids" {
   description = "The list of subnet IDs in which to create the instances"
   type        = list(string)
@@ -26,7 +31,7 @@ variable "service_name_underscore" {
 }
 
 variable "team_name_underscore" {
-  description = "The name of the team, delimited with underscores (e.g. 'sre_observability')"
+  description = "The name of the team, delimited with underscores (e.g. 'team_name')"
   type        = string
 }
 
@@ -83,4 +88,16 @@ variable "keypair_name" {
   description = "The name of the keypair for the EC2 instance"
   type        = string
   default     = null
+}
+
+variable "ubuntu_arch" {
+  description = "The architecture of Ubuntu to launch"
+  type        = string
+  default     = "amd64"
+}
+
+variable "ubuntu_version" {
+  description = "The version of Ubuntu to launch"
+  type        = string
+  default     = "focal-20.04"
 }

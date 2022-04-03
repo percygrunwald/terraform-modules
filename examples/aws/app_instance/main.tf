@@ -21,7 +21,8 @@ module "app_instance" {
   vpc_id     = data.aws_vpc.default.id
 
   custom_tags             = var.custom_tags
+  org_name_underscore     = var.org_name_underscore
+  team_name_underscore    = var.team_name_underscore
   env                     = var.env
   service_name_underscore = var.service_name_underscore
-  team_name_underscore    = var.team_name_underscore
 }

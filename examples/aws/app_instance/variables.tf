@@ -27,6 +27,12 @@ variable "instances" {
   }
 }
 
+variable "org_name_underscore" {
+  description = "The name of the org, delimited with underscores (e.g. 'org_name')"
+  type        = string
+  default     = "org_name"
+}
+
 variable "service_name_underscore" {
   description = "The name of the service, delimited with underscores (e.g. 'test_service')"
   type        = string
@@ -34,7 +40,7 @@ variable "service_name_underscore" {
 }
 
 variable "team_name_underscore" {
-  description = "The name of the team, delimited with underscores"
+  description = "The name of the team, delimited with underscores (e.g. 'team_name')"
   type        = string
-  default     = "percygrunwald"
+  default     = "team_name"
 }

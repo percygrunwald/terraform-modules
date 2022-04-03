@@ -6,7 +6,7 @@ cloud_final_modules:
 locale: en_US.UTF-8
 
 # timezone: set the timezone for the instance
-timezone: "America/Los_Angeles"
+timezone: "Etc/UTC"
 
 # This can be used to put your public key into .ssh/authorized_keys in default account’s home directory ("ubuntu" by default).
 #

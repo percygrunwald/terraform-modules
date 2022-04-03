@@ -29,6 +29,7 @@ module "vpc" {
   database_subnet_ipv6_prefixes = var.database_subnet_ipv6_prefixes
 
   custom_tags          = var.custom_tags
-  env                  = var.env
+  org_name_underscore  = var.org_name_underscore
   team_name_underscore = var.team_name_underscore
+  env                  = var.env
 }

@@ -3,7 +3,7 @@ terraform {
 }
 
 locals {
-  name = "${var.team_name_underscore}-${var.env}"
+  name = "${var.org_name_underscore}-${var.team_name_underscore}-${var.env}"
 }
 
 module "vpc" {
@@ -29,8 +29,9 @@ module "vpc" {
   database_subnet_assign_ipv6_address_on_creation = true
 
   tags = merge(var.custom_tags, {
-    Environment = var.env
+    Org         = var.org_name_underscore
     Team        = var.team_name_underscore
+    Environment = var.env
   })
 
   vpc_tags = {

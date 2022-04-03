@@ -3,8 +3,7 @@ terraform {
 }
 
 locals {
-  ubuntu_version = "focal-20.04"
-  name           = "${var.team_name_underscore}-${var.service_name_underscore}-${var.env}"
+  name = "${var.org_name_underscore}-${var.team_name_underscore}-${var.env}-${var.service_name_underscore}"
 
   ssh_port     = 22
   tcp_protocol = "tcp"
@@ -18,7 +17,7 @@ data "aws_ami" "ubuntu" {
   most_recent = true
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-${local.ubuntu_version}-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-${var.ubuntu_version}-${var.ubuntu_arch}-server-*"]
   }
   filter {
     name   = "virtualization-type"
@@ -108,9 +107,10 @@ resource "aws_security_group" "this" {
   }
 
   tags = merge(var.custom_tags, {
+    Org         = var.org_name_underscore
+    Team        = var.team_name_underscore
     Environment = var.env
     Service     = var.service_name_underscore
-    Team        = var.team_name_underscore
   })
 }
 

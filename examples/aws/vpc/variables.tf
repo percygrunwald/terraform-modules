@@ -42,6 +42,12 @@ variable "env" {
   default     = "test"
 }
 
+variable "org_name_underscore" {
+  description = "The name of the org, delimited with underscores (e.g. 'org_name')"
+  type        = string
+  default     = "org_name"
+}
+
 variable "private_subnets" {
   description = "List of CIDRs for the private subnets of the VPC"
   type        = list(string)
@@ -67,7 +73,7 @@ variable "public_subnet_ipv6_prefixes" {
 }
 
 variable "team_name_underscore" {
-  description = "The name of the team, delimited with underscores"
+  description = "The name of the team, delimited with underscores (e.g. 'team_name')"
   type        = string
-  default     = "percygrunwald"
+  default     = "team_name"
 }

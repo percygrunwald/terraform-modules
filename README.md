@@ -68,6 +68,22 @@ Run an individual test:
 go test ./test/ -v -timeout 60m -run TestExamplesAWSAppInstance
 ```
 
+## Standard tagging scheme
+
+This repo adopts a standardized and flexible tagging scheme for infrastructure:
+
+- `Org` (`org_name_underscore`, all modules): The name of the organization/company
+- `Team` (`team_name_underscore`, all modules): The name of the team/project within the org
+- `Environment` (`env`, all modules): The name of the service/application environment (e.g. `dev`, `prod`, etc.)
+- `Service` (`service_name_underscore`, most modules): The name of the service/application within the team
+
+The implicit logical hierarch is that:
+
+- A team/project exists within an org/company
+- An environment exists within a team/project
+- A service/application exists within an environment
+
+Org > Team > Env > Service
 ## Continuous Integration (CI)
 
 ### Testing the CI pipeline locally
