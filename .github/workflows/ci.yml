@@ -30,10 +30,16 @@ jobs:
         uses: tj-actions/changed-files@v13.1
         with:
           files: |
+            .github/workflows/ci.yml
             examples/**/*.tf
             modules/**/*.tf
             modules/**/*.tpl
             test/*.go
+            go.mod
+            go.sum
+            .tool-versions
+            requirements-*.txt
+            script/*.sh
       - id: setup
         uses: ./.github/actions/setup
         if: steps.terraform-files-changed.outputs.any_changed == 'true'

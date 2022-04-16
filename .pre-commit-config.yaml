@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.2.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -10,9 +10,9 @@ repos:
       - id: check-added-large-files
       - id: check-symlinks
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.62.3
+    rev: v1.67.0
     hooks:
-      - id: checkov
+      - id: terraform_checkov
       - id: terraform_fmt
       - id: terraform_tflint
       - id: terraform_validate

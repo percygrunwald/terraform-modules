@@ -11,5 +11,8 @@ fi
 printf "Installing dependencies...\n"
 $SCRIPT_DIR/install_deps.sh
 
-printf "Installing pre-commit hook..."
+printf "Installing pre-commit hook...\n"
 pre-commit install
+
+printf "Running pre-commit on all files...\n"
+pre-commit run -a
