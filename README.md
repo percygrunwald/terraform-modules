@@ -75,7 +75,7 @@ This repo adopts a standardized and flexible tagging scheme for infrastructure:
 - `Org` (`org_name_underscore`, all modules): The name of the organization/company
 - `Team` (`team_name_underscore`, all modules): The name of the team/project within the org
 - `Environment` (`env`, all modules): The name of the service/application environment (e.g. `dev`, `prod`, etc.)
-- `Service` (`service_name_underscore`, most modules): The name of the service/application within the team
+- `Service` (`service_name_underscore`, most modules): The name of the service/application within the env
 
 The implicit logical hierarch is that:
 
