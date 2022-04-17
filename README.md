@@ -61,16 +61,16 @@ terraform apply -var "aws_region=us-west-2"
 export AWS_PROFILE=percy_test-github_actions
 ```
 
-Run all the tests:
+Run all the tests (`-count 1` is required to prevent caching):
 
 ```
-go test ./test/ -v -timeout 60m
+go test ./test/ -v -timeout 60m -count 1
 ```
 
 Run an individual test:
 
 ```
-go test ./test/ -v -timeout 60m -run TestExamplesAWSAppInstance
+go test ./test/ -v -timeout 60m -run TestExamplesAWSAppInstance -count 1
 ```
 
 ## Standard tagging scheme
