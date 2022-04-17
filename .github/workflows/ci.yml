@@ -44,7 +44,7 @@ jobs:
         uses: ./.github/actions/setup
         if: steps.terraform-files-changed.outputs.any_changed == 'true'
       - name: go_test
-        run: go test ./test/ -v -timeout 30m
+        run: go test ./test/ -v -timeout 60m
         if: steps.terraform-files-changed.outputs.any_changed == 'true'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

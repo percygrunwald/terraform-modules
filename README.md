@@ -56,6 +56,11 @@ terraform apply -var "aws_region=us-west-2"
 
 ### Run the tests
 
+```
+# Load AWS creds from ~/.aws/credentials
+export AWS_PROFILE=percy_test-github_actions
+```
+
 Run all the tests:
 
 ```
