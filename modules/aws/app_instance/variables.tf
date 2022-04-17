@@ -84,8 +84,8 @@ variable "extra_security_group_ids" {
   default     = []
 }
 
-variable "keypair_name" {
-  description = "The name of the keypair for the EC2 instance"
+variable "key_pair_key_name" {
+  description = "The key name of the key pair for the EC2 instance"
   type        = string
   default     = null
 }
