@@ -46,16 +46,20 @@ data "template_cloudinit_config" "config" {
 }
 
 resource "aws_instance" "this" {
-  for_each                    = var.instances
-  ami                         = (var.ami_custom_image_id != "" ? var.ami_custom_image_id : data.aws_ami.ubuntu.id)
-  instance_type               = each.value
-  vpc_security_group_ids      = concat([aws_security_group.this.id], var.extra_security_group_ids)
-  key_name                    = var.key_pair_key_name
-  iam_instance_profile        = aws_iam_instance_profile.this.name
-  user_data_base64            = data.template_cloudinit_config.config.rendered
-  monitoring                  = true
-  associate_public_ip_address = false
-  ebs_optimized               = true
+  for_each               = var.instances
+  ami                    = (var.ami_custom_image_id != "" ? var.ami_custom_image_id : data.aws_ami.ubuntu.id)
+  instance_type          = each.value
+  vpc_security_group_ids = concat([aws_security_group.this.id], var.extra_security_group_ids)
+  key_name               = var.key_pair_key_name
+  iam_instance_profile   = aws_iam_instance_profile.this.name
+  user_data_base64       = data.template_cloudinit_config.config.rendered
+  monitoring             = true
+  ebs_optimized          = true
+
+  # Must be set to true when using Elastic IPs, otherwise the instance will be
+  # recreated on each apply.
+  #checkov:skip=CKV_AWS_88:EC2 instance should not have public IP
+  associate_public_ip_address = true
 
   # `element` "wraps around" if the index of the current hostname is greater
   # than maximum index of the subnet IDs. This will distribute the instances
