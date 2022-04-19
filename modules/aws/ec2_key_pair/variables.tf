@@ -10,11 +10,6 @@ variable "env" {
   type        = string
 }
 
-variable "key_name" {
-  description = "The key name of the key pair"
-  type        = string
-}
-
 variable "org_name_underscore" {
   description = "The name of the org, delimited with underscores (e.g. 'org_name')"
   type        = string
@@ -27,6 +22,11 @@ variable "public_key" {
 
 variable "team_name_underscore" {
   description = "The name of the team, delimited with underscores (e.g. 'team_name')"
+  type        = string
+}
+
+variable "user" {
+  description = "The user associated with the public key (e.g. 'gitlab_ci')"
   type        = string
 }
 

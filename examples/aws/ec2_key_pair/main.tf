@@ -16,7 +16,7 @@ module "ec2_key_pair" {
 
   aws_region = var.aws_region
 
-  key_name   = var.key_name
+  user       = var.user
   public_key = var.public_key
 
   custom_tags          = var.custom_tags

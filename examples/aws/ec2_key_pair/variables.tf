@@ -12,20 +12,14 @@ variable "custom_tags" {
   }
 }
 
-variable "key_name" {
-  description = "The name of the key pair"
-  type        = string
-  default     = "examples_test"
-}
-
 variable "env" {
-  description = "The service env (e.g. 'dev')"
+  description = "The service env"
   type        = string
   default     = "test"
 }
 
 variable "org_name_underscore" {
-  description = "The name of the org, delimited with underscores (e.g. 'org_name')"
+  description = "The name of the org, delimited with underscores"
   type        = string
   default     = "org_name"
 }
@@ -37,7 +31,13 @@ variable "public_key" {
 }
 
 variable "team_name_underscore" {
-  description = "The name of the team, delimited with underscores (e.g. 'team_name')"
+  description = "The name of the team, delimited with underscores"
   type        = string
   default     = "team_name"
+}
+
+variable "user" {
+  description = "The name of the user associated with the key"
+  type        = string
+  default     = "github_actions"
 }
