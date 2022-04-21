@@ -73,13 +73,13 @@ variable "extra_userdata_merge" {
 }
 
 variable "root_disk_size_gb" {
-  description = "EBS Root volume size, defaults to 100Gb for Meraki Standard"
+  description = "EBS Root volume size"
   type        = number
-  default     = 100
+  default     = 10
 }
 
 variable "extra_security_group_ids" {
-  description = "List of security group ids to add to app_instance created"
+  description = "List of security group ids to add to ec2_instance created"
   type        = list(any)
   default     = []
 }

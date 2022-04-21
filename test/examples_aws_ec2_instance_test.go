@@ -22,7 +22,7 @@ func TestExamplesAWSAppInstance(t *testing.T) {
 	}
 
 	opts := &terraform.Options{
-		TerraformDir: "../examples/aws/app_instance",
+		TerraformDir: "../examples/aws/ec2_instance",
 
 		Vars: map[string]interface{}{
 			"instances": instances,

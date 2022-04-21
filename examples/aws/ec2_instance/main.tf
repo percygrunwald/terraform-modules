@@ -11,8 +11,8 @@ provider "aws" {
   region = var.aws_region
 }
 
-module "app_instance" {
-  source = "../../../modules/aws/app_instance"
+module "ec2_instance" {
+  source = "../../../modules/aws/ec2_instance"
 
   aws_region = var.aws_region
 

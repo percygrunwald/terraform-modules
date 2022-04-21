@@ -104,7 +104,7 @@ resource "aws_eip" "this" {
 }
 
 resource "aws_security_group" "this" {
-  name_prefix = "${local.name}-app_instance"
+  name_prefix = "${local.name}-ec2_instance"
   description = "Main security group for the app instance"
   vpc_id      = var.vpc_id
 

@@ -6,7 +6,7 @@ Terraform modules repo in the style of [*Terraform: Up &amp; Running*](https://l
 
 ```
 terraform {
-  source = "${get_env("MODULES_REPO_GIT_URL", "")}//modules/aws/app_instance?ref=v1.2.3"
+  source = "${get_env("MODULES_REPO_GIT_URL", "")}//modules/aws/ec2_instance?ref=v1.2.3"
 }
 ```
 
@@ -33,7 +33,7 @@ In the spirit of [*Terraform: Up &amp; Running*](https://learning.oreilly.com/li
 
 ```
 # Change to the example directory
-cd examples/aws/app_instance
+cd examples/aws/ec2_instance
 
 # Load AWS creds from ~/.aws/credentials
 export AWS_PROFILE=percy_test-github_actions
