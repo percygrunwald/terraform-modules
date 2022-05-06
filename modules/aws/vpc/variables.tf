@@ -2,7 +2,7 @@
 
 variable "availability_zones" {
   description = "List of availability zones of the VPC (e.g. ['us-west-2a', 'us-west-2b', 'us-west-2c'])"
-  type        = list(string)
+  type        = set(string)
 }
 
 variable "aws_region" {
@@ -66,4 +66,16 @@ variable "custom_tags" {
   description = "Custom tags to set on the vpc"
   type        = map(string)
   default     = {}
+}
+
+variable "enable_dns_hostnames" {
+  description = "Whether or not to enable DNS hostnames"
+  type        = bool
+  default     = true
+}
+
+variable "eks_cluster_names" {
+  description = "Names of EKS clusters in the VPC"
+  type        = set(string)
+  default     = []
 }

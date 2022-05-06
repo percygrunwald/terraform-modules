@@ -19,14 +19,24 @@ module "vpc" {
   public_subnets                                = var.public_subnets
   public_subnet_ipv6_prefixes                   = var.public_subnet_ipv6_prefixes
   public_subnet_assign_ipv6_address_on_creation = true
+  public_subnet_tags = merge(
+    { "kubernetes.io/role/elb" = 1 },
+    { for eks_cluster_name in var.eks_cluster_names : "kubernetes.io/cluster/${eks_cluster_name}" => "shared" }
+  )
 
   private_subnets                                = var.private_subnets
   private_subnet_ipv6_prefixes                   = var.private_subnet_ipv6_prefixes
   private_subnet_assign_ipv6_address_on_creation = true
+  private_subnet_tags = merge(
+    { "kubernetes.io/role/internal-elb" = 1 },
+    { for eks_cluster_name in var.eks_cluster_names : "kubernetes.io/cluster/${eks_cluster_name}" => "shared" }
+  )
 
   database_subnets                                = var.database_subnets
   database_subnet_ipv6_prefixes                   = var.database_subnet_ipv6_prefixes
   database_subnet_assign_ipv6_address_on_creation = true
+
+  enable_dns_hostnames = var.enable_dns_hostnames
 
   tags = merge(var.custom_tags, {
     Org         = var.org_name_underscore

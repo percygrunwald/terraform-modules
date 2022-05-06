@@ -1,19 +1,13 @@
-variable "availability_zones" {
-  description = "List of availability zones of the VPC"
-  type        = set(string)
-  default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
-}
-
 variable "aws_region" {
   description = "The AWS region"
   type        = string
   default     = "us-west-2"
 }
 
-variable "cidr" {
-  description = "The CIDR of the VPC"
+variable "cluster_name" {
+  description = "The name for the EKS cluster"
   type        = string
-  default     = "10.40.0.0/16"
+  default     = "example_cluster"
 }
 
 variable "custom_tags" {
@@ -22,18 +16,6 @@ variable "custom_tags" {
   default = {
     Example = "yes"
   }
-}
-
-variable "database_subnets" {
-  description = "List of CIDRs for the private database subnets of the VPC"
-  type        = list(string)
-  default     = ["10.40.30.0/24", "10.40.31.0/24", "10.40.32.0/24"]
-}
-
-variable "database_subnet_ipv6_prefixes" {
-  description = "List of prefixes (0-256) for the database subnets of the VPC"
-  type        = list(string)
-  default     = ["30", "31", "32"]
 }
 
 variable "env" {
@@ -46,6 +28,38 @@ variable "org_name_underscore" {
   description = "The name of the org, delimited with underscores (e.g. 'org_name')"
   type        = string
   default     = "org_name"
+}
+
+variable "team_name_underscore" {
+  description = "The name of the team, delimited with underscores (e.g. 'team_name')"
+  type        = string
+  default     = "team_name"
+}
+
+## VPC-specific vars
+
+variable "availability_zones" {
+  description = "List of availability zones of the VPC"
+  type        = set(string)
+  default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
+}
+
+variable "cidr" {
+  description = "The CIDR of the VPC"
+  type        = string
+  default     = "10.40.0.0/16"
+}
+
+variable "database_subnets" {
+  description = "List of CIDRs for the private database subnets of the VPC"
+  type        = list(string)
+  default     = ["10.40.30.0/24", "10.40.31.0/24", "10.40.32.0/24"]
+}
+
+variable "database_subnet_ipv6_prefixes" {
+  description = "List of prefixes (0-256) for the database subnets of the VPC"
+  type        = list(string)
+  default     = ["30", "31", "32"]
 }
 
 variable "private_subnets" {
@@ -70,10 +84,4 @@ variable "public_subnet_ipv6_prefixes" {
   description = "List of prefixes (0-256) for the public subnets of the VPC"
   type        = list(string)
   default     = ["10", "11", "12"]
-}
-
-variable "team_name_underscore" {
-  description = "The name of the team, delimited with underscores (e.g. 'team_name')"
-  type        = string
-  default     = "team_name"
 }
