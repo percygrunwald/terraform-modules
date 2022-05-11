@@ -19,6 +19,7 @@ module "ec2_instance" {
   instances         = var.instances
   subnet_ids        = data.aws_subnet_ids.default.ids
   vpc_id            = data.aws_vpc.default.id
+  assign_public_ip  = var.assign_public_ip
   key_pair_key_name = var.key_pair_key_name
 
   custom_tags             = var.custom_tags

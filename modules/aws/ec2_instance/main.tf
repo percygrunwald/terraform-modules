@@ -58,8 +58,7 @@ resource "aws_instance" "this" {
 
   # Must be set to true when using Elastic IPs, otherwise the instance will be
   # recreated on each apply.
-  #checkov:skip=CKV_AWS_88:EC2 instance should not have public IP
-  associate_public_ip_address = true
+  associate_public_ip_address = var.assign_public_ip
 
   # `element` "wraps around" if the index of the current hostname is greater
   # than maximum index of the subnet IDs. This will distribute the instances
@@ -98,7 +97,7 @@ resource "aws_instance" "this" {
 }
 
 resource "aws_eip" "this" {
-  for_each = var.instances
+  for_each = { for k, v in var.instances : k => v if var.assign_public_ip }
   instance = aws_instance.this[each.key].id
   vpc      = true
 }

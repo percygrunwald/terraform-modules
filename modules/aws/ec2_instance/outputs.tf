@@ -8,7 +8,7 @@ output "instances" {
   value = {
     for hostname, instance in aws_instance.this : hostname => {
       id         = instance.id
-      public_ip  = aws_eip.this[hostname].public_ip
+      public_ip  = var.assign_public_ip ? aws_eip.this[hostname].public_ip : null
       private_ip = aws_instance.this[hostname].private_ip
     }
   }

@@ -48,6 +48,12 @@ variable "ami_custom_image_id" {
   default     = ""
 }
 
+variable "assign_public_ip" {
+  description = "Whether or not to assign a public IP (EIP) to the instances"
+  type        = bool
+  default     = false
+}
+
 variable "custom_tags" {
   description = "Custom tags to set on the EC2 instances"
   type        = map(string)

@@ -1,3 +1,9 @@
+variable "assign_public_ip" {
+  description = "Whether or not to assign a public IP (EIP) to the instances"
+  type        = bool
+  default     = false
+}
+
 variable "aws_region" {
   description = "The AWS region"
   type        = string

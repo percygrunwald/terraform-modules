@@ -16,9 +16,9 @@ func TestExamplesAWSAppInstance(t *testing.T) {
 
 	uniqueID := strings.ToLower(random.UniqueId())
 	instances := map[string]string{
-		fmt.Sprintf("%s_test_201", uniqueID): "t3.micro",
-		fmt.Sprintf("%s_test_202", uniqueID): "t3.micro",
-		fmt.Sprintf("%s_test_203", uniqueID): "t3.micro",
+		fmt.Sprintf("%s_test_201", uniqueID): "t3a.nano",
+		fmt.Sprintf("%s_test_202", uniqueID): "t3a.nano",
+		fmt.Sprintf("%s_test_203", uniqueID): "t3a.nano",
 	}
 
 	opts := &terraform.Options{
