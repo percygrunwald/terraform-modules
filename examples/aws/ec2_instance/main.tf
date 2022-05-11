@@ -16,9 +16,10 @@ module "ec2_instance" {
 
   aws_region = var.aws_region
 
-  instances  = var.instances
-  subnet_ids = data.aws_subnet_ids.default.ids
-  vpc_id     = data.aws_vpc.default.id
+  instances         = var.instances
+  subnet_ids        = data.aws_subnet_ids.default.ids
+  vpc_id            = data.aws_vpc.default.id
+  key_pair_key_name = var.key_pair_key_name
 
   custom_tags             = var.custom_tags
   org_name_underscore     = var.org_name_underscore

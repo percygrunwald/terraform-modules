@@ -22,9 +22,15 @@ variable "instances" {
   description = "The hostnames and type of the instances to create"
   type        = map(string)
   default = {
-    example201 = "t3.micro",
-    example202 = "t3.micro"
+    example201 = "t3a.nano",
+    example202 = "t3a.nano"
   }
+}
+
+variable "key_pair_key_name" {
+  description = "The key name of the key pair for the EC2 instance"
+  type        = string
+  default     = null
 }
 
 variable "org_name_underscore" {
