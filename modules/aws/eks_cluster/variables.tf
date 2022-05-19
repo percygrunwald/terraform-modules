@@ -53,8 +53,9 @@ variable "managed_node_group_defaults" {
   description = "The (AWS) managed node group defaults"
   type        = any
   default = {
-    disk_size      = 8
-    instance_types = ["t3.nano"]
+    disk_size                  = 8
+    instance_types             = ["t3a.micro"]
+    iam_role_attach_cni_policy = true
   }
 }
 
@@ -62,10 +63,10 @@ variable "managed_node_groups" {
   description = "The managed node groups to provision"
   type        = any
   default = {
-    example = {
-      min_size     = 1
+    example_node_group = {
+      min_size     = 2
       max_size     = 10
-      desired_size = 1
+      desired_size = 2
     }
   }
 }
