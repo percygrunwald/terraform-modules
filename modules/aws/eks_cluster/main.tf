@@ -44,6 +44,7 @@ module "eks" {
   cluster_endpoint_public_access  = true
   cluster_ip_family               = "ipv6"
   create_cni_ipv6_iam_policy      = true
+  enable_irsa                     = true
 
   # vpc_id     = var.vpc_id
   # subnet_ids = var.subnet_ids
@@ -67,6 +68,7 @@ module "eks" {
       resolve_conflicts        = "OVERWRITE"
       service_account_role_arn = module.vpc_cni_irsa.iam_role_arn
     }
+
   }
 
   manage_aws_auth_configmap = true
@@ -136,6 +138,27 @@ module "vpc_cni_irsa" {
     main = {
       provider_arn               = module.eks.oidc_provider_arn
       namespace_service_accounts = ["kube-system:aws-node"]
+    }
+  }
+
+  tags = merge(var.custom_tags, {
+    Org         = var.org_name_underscore
+    Team        = var.team_name_underscore
+    Environment = var.env
+  })
+}
+
+module "load_balancer_controller_irsa_role" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  version = "~> 4.12"
+
+  role_name                              = "load-balancer-controller"
+  attach_load_balancer_controller_policy = true
+
+  oidc_providers = {
+    main = {
+      provider_arn               = module.eks.oidc_provider_arn
+      namespace_service_accounts = ["kube-system:aws-load-balancer-controller"]
     }
   }
 

@@ -17,3 +17,8 @@ output "cluster_version" {
   description = "Kubernetes version of the cluster"
   value       = module.eks.cluster_version
 }
+
+output "load_balancer_controller_irsa_role_arn" {
+  description = "The ARN of the load balancer controller IRSA role"
+  value       = module.load_balancer_controller_irsa_role.iam_role_arn
+}
