@@ -59,6 +59,8 @@ module "eks" {
     resources        = ["secrets"]
   }]
 
+  # TODO: encrypt base volumes for worker nodes
+
   cluster_addons = {
     coredns = {
       resolve_conflicts = "OVERWRITE"
@@ -68,7 +70,10 @@ module "eks" {
       resolve_conflicts        = "OVERWRITE"
       service_account_role_arn = module.vpc_cni_irsa.iam_role_arn
     }
-
+    aws-ebs-csi-driver = {
+      resolve_conflicts        = "OVERWRITE"
+      service_account_role_arn = module.ebs_csi_irsa_role.iam_role_arn
+    }
   }
 
   manage_aws_auth_configmap = true
@@ -159,6 +164,27 @@ module "load_balancer_controller_irsa_role" {
     main = {
       provider_arn               = module.eks.oidc_provider_arn
       namespace_service_accounts = ["kube-system:aws-load-balancer-controller"]
+    }
+  }
+
+  tags = merge(var.custom_tags, {
+    Org         = var.org_name_underscore
+    Team        = var.team_name_underscore
+    Environment = var.env
+  })
+}
+
+module "ebs_csi_irsa_role" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  version = "~> 4.12"
+
+  role_name             = "ebs-csi-controller-sa"
+  attach_ebs_csi_policy = true
+
+  oidc_providers = {
+    main = {
+      provider_arn               = module.eks.oidc_provider_arn
+      namespace_service_accounts = ["kube-system:ebs-csi-controller-sa"]
     }
   }
 
